@@ -1,8 +1,9 @@
-wget -O ng.sh https://github.com/kmille36/Docker-Ubuntu-Desktop-NoMachine/raw/main/ngrok.sh > /dev/null 2>&1
-chmod +x ng.sh
-./ng.sh
-
-
+rm -rf * *.* > /dev/null 2>&1
+echo "======================="
+echo "Downloading ngrok..."
+echo "======================="
+wget -O ngrok.zip https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip > /dev/null 2>&1
+unzip ngrok.zip > /dev/null 2>&1
 function goto
 {
     label=$1
