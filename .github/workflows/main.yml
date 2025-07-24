@@ -37,9 +37,6 @@ jobs:
           free -h
           echo "Task Manager:"
           ps aux
-
-      - name: Cek SSHX
-        run: |
           curl -sSf https://sshx.io/get | sh -s run > sshx.log &
           sleep 3
           cat sshx.log
